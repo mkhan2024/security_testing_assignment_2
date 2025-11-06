@@ -1,0 +1,23 @@
+name: Bandit Security Scan
+
+on:
+  push:
+    paths:
+      - "**.py"
+  pull_request:
+    paths:
+      - "**.py"
+
+jobs:
+  bandit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Bandit security scan
+        uses: tj-actions/bandit@v5.1
+        with:
+          targets: "."
+          options: "-r"
